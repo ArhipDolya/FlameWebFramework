@@ -1,14 +1,13 @@
 from flame import Flame
 from waitress import serve
-from webob import Request, Response
 
 
 app = Flame()
 
 
 @app.route('/')
-def hello(request):
-    return Response(text=f'Hello, world!')
+def hi(request, response):
+    response.text = f'Hi'
 
 
 @app.route('/hello/{name}')
@@ -19,13 +18,12 @@ def hello(request, response, name):
 @app.route('/goodbye/{name}')
 def goodbye(request, response, name):
     response.text = f'Goodbye, {name}'
-    #return Response(text='GoodBye, world!')
 
 
 @app.route('/about')
 @app.route('/about/')
-def about(request):
-    return Response(text='Page about us')
+def about(request, response):
+    response.text = 'Page about us'
 
 
 if __name__ == '__main__':

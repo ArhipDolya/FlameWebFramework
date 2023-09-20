@@ -11,9 +11,21 @@ def hello(request):
     return Response(text=f'Hello, world!')
 
 
-@app.route('/goodbye')
-def goodbye(request):
-    return Response(text='GoodBye, world!')
+@app.route('/hello/{name}')
+def hello(request, response, name):
+    response.text = f'Hello, {name}'
+
+
+@app.route('/goodbye/{name}')
+def goodbye(request, response, name):
+    response.text = f'Goodbye, {name}'
+    #return Response(text='GoodBye, world!')
+
+
+@app.route('/about')
+@app.route('/about/')
+def about(request):
+    return Response(text='Page about us')
 
 
 if __name__ == '__main__':
